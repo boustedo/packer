@@ -1,0 +1,5 @@
+{
+  "variables": {
+    "restart_timeout": "5m"
+  }
+}

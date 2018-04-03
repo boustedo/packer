@@ -14,6 +14,8 @@ Environment.new(name: 'packer.local') do |environment|
   create_packer_windows_vms(environment, 'w16sc')
   create_packer_windows_vms(environment, 'w16sc-de')
 
+  create_packer_windows_vms(environment, 'w1709')
+
   create_packer_linux_vms(environment, 'u16s')
   create_packer_linux_vms(environment, 'u16s-dc')
 end
@@ -46,7 +48,8 @@ def create_local_packer_vm(environment, name, type = '')
       provider.vagrant.enable_virtualization_extensions = true
     end
 
-    ChefSoloProvisioner.new(vm, 'run_list' => 'hello_world::default')
+    #ShellProvisioner.new(vm, 'inline' => 'choco install -y chefdk git'))
+    #ChefSoloProvisioner.new(vm, 'run_list' => 'hello_world::default')
   end
 end
 

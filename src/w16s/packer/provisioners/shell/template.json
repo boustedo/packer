@@ -1,0 +1,34 @@
+{
+  "provisioners": [
+    {
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "scripts": [
+        "provisioners/shell/scripts/vm-guest-tools.bat",
+        "provisioners/shell/scripts/enable-rdp.bat"
+      ],
+      "type": "windows-shell"
+    },
+    {
+      "scripts": [
+        "provisioners/shell/scripts/debloat-windows.ps1"
+      ],
+      "type": "powershell"
+    },
+    {
+      "restart_timeout": "{{user `restart_timeout`}}",
+      "type": "windows-restart"
+    },
+    {
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "scripts": [
+        "provisioners/shell/scripts/pin-powershell.bat",
+        "provisioners/shell/scripts/compile-dotnet-assemblies.bat",
+        "provisioners/shell/scripts/set-winrm-automatic.bat",
+        "provisioners/shell/scripts/uac-enable.bat",
+        "provisioners/shell/scripts/dis-updates.bat",
+        "provisioners/shell/scripts/compact.bat"
+      ],
+      "type": "windows-shell"
+    }
+  ]
+}

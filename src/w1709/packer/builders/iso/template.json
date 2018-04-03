@@ -1,0 +1,7 @@
+{
+  "variables": {
+    "iso_url": "https://download.my.visualstudio.com/pr/en_windows_server_version_1709_updated_jan_2018_x64_dvd_100492040.iso",
+    "iso_checksum_type": "sha1",
+    "iso_checksum": "A36ED11D4622E5D975447CC20502619469B0C415"
+  }
+}

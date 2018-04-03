@@ -1,7 +1,7 @@
 {
   "variables": {
-    "iso_url": "http://care.dlservice.microsoft.com/dl/download/6/5/D/65D18931-F626-4A35-AD5B-F5DA41FE6B76/16299.15.170928-1534.rs3_release_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso",
+    "iso_url": "https://download.my.visualstudio.com/pr/en_windows_10_multi-edition_vl_version_1709_updated_dec_2017_x64_dvd_100406172.iso",
     "iso_checksum_type": "sha1",
-    "iso_checksum": "3b5f9494d870726d6d8a833aaf6169a964b8a9be"
+    "iso_checksum": "1851A0007321FA084145EA24B8D30BF7A72BF1C6"
   }
 }

@@ -38,6 +38,12 @@ packerTemplates = packerTemplates.
   Concat(w16sc_de).
   ToList();
 
+var w1709 = PackerTemplates_CreateWindows("w1709");
+
+packerTemplates = packerTemplates.
+  Concat(w1709).
+  ToList();
+
 var u16s = PackerTemplates_CreateLinux("u16s");
 var u16s_dc = PackerTemplates_CreateLinux("u16s-dc", parents: u16s);
 
@@ -56,7 +62,7 @@ IEnumerable<PackerTemplate> PackerTemplates_CreateWindows(string type, bool amaz
     type,
     "virtualbox-core",
     new [] { PackerBuilder_Create(parents == null ? "virtualbox-iso" : "virtualbox-ovf") },
-    new [] { PackerProvisioner_Create("chef") },
+    new [] { PackerProvisioner_Create("shell") },
     new [] { PackerPostProcessor_Create("vagrant-virtualbox") },
     parents != null ? parents.First(item => item.IsMatching("virtualbox-core")) : null
   );
@@ -75,7 +81,7 @@ IEnumerable<PackerTemplate> PackerTemplates_CreateWindows(string type, bool amaz
     type,
     "hyperv-core",
     new [] { PackerBuilder_Create(parents == null ? "hyperv-iso" : "hyperv-vmcx") },
-    new [] { PackerProvisioner_Create("chef") },
+    new [] { PackerProvisioner_Create("shell") },
     new [] { PackerPostProcessor_Create("vagrant-hyperv") },
     parents != null ? parents.First(item => item.IsMatching("hyperv-core")) : null
   );

@@ -119,33 +119,41 @@ void PackerTemplate_MergeDirectories(PackerTemplate template) {
   PackerTemplate_Log(template, "Merge Directories");
 
   foreach (var component in template.Components) {
+    Information(component);
     foreach (var sourceDirectory in GetDirectories("src/*")) {
+      Information(sourceDirectory);
       var sourceDirectoryName = sourceDirectory.GetDirectoryName();
       if (!component.IsMatching(sourceDirectoryName)) {
         continue;
       }
 
       foreach (var builder in template.Builders) {
+        Information(builder);
         foreach (var builderDirectory in GetDirectories(sourceDirectory + "/packer/builders/*")) {
+          Information(builderDirectory);
           var builderDirectoryName = builderDirectory.GetDirectoryName();
           if (!builder.IsMatching(builderDirectoryName)) {
             continue;
           }
 
           var targetDirecory = template.GetBuildDirectory() + "/builders/" + builder.Name;
+          Information(targetDirecory);
           EnsureDirectoryExists(targetDirecory);
           CopyFiles(builderDirectory + "/**/*", targetDirecory, true);
         }
       }
 
       foreach (var provisioner in template.Provisioners) {
+        Information(provisioner);
         foreach (var provisionerDirectory in GetDirectories(sourceDirectory + "/packer/provisioners/*")) {
+          Information(provisionerDirectory);
           var provisionerDirectoryName = provisionerDirectory.GetDirectoryName();
           if (!provisioner.IsMatching(provisionerDirectoryName)) {
             continue;
           }
 
           var targetDirecory = template.GetBuildDirectory() + "/provisioners/" + provisioner.Name;
+          Information(targetDirecory);
           EnsureDirectoryExists(targetDirecory);
           CopyFiles(provisionerDirectory + "/**/*", targetDirecory, true);
         }
@@ -263,10 +271,10 @@ void PackerTemplate_MergeJson(PackerTemplate template) {
 
   jsonTemplateVariables["description"] = string.Join(", ", descriptions);
 
-  jsonTemplateVariables["chef_run_list_prepare"] = string.Join(",", runList.Select(item => "recipe[gusztavvargadr_packer_" + item.Replace("-", "_") + "::prepare]"));
-  jsonTemplateVariables["chef_run_list_install"] = string.Join(",", runList.Select(item => "recipe[gusztavvargadr_packer_" + item.Replace("-", "_") + "::install]"));
-  jsonTemplateVariables["chef_run_list_patch"] = string.Join(",", runList.Select(item => "recipe[gusztavvargadr_packer_" + item.Replace("-", "_") + "::patch]"));
-  jsonTemplateVariables["chef_run_list_cleanup"] = string.Join(",", runList.Select(item => "recipe[gusztavvargadr_packer_" + item.Replace("-", "_") + "::cleanup]"));
+  // jsonTemplateVariables["chef_run_list_prepare"] = string.Join(",", runList.Select(item => "recipe[gusztavvargadr_packer_" + item.Replace("-", "_") + "::prepare]"));
+  // jsonTemplateVariables["chef_run_list_install"] = string.Join(",", runList.Select(item => "recipe[gusztavvargadr_packer_" + item.Replace("-", "_") + "::install]"));
+  // jsonTemplateVariables["chef_run_list_patch"] = string.Join(",", runList.Select(item => "recipe[gusztavvargadr_packer_" + item.Replace("-", "_") + "::patch]"));
+  // jsonTemplateVariables["chef_run_list_cleanup"] = string.Join(",", runList.Select(item => "recipe[gusztavvargadr_packer_" + item.Replace("-", "_") + "::cleanup]"));
   
   var jsonTemplate = new JObject();
   jsonTemplate["variables"] = jsonTemplateVariables;
