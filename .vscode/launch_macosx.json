@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Cake: Debug Script (Mono)",
+      "type": "mono",
+      "request": "launch",
+      "program": "${workspaceRoot}/tools/Cake/Cake.exe",
+      "args": [
+        "${workspaceRoot}/ci.cake",
+        "--debug",
+        "--verbosity=diagnostic",
+        "--target=info",
+        "--configuration=w10e-hyperv-core"
+      ],
+      "cwd": "${workspaceRoot}",
+      "console": "internalConsole"
+    }
+  ]
+}

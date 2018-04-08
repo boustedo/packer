@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Cake: Debug Script (CoreCLR)",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "${workspaceRoot}/tools/Cake.CoreCLR/Cake.dll",
+      "args": [
+        "${workspaceRoot}/ci.cake",
+        "--debug",
+        "--verbosity=diagnostic",
+        "--target=info",
+        "--configuration=w10e-hyperv-core"
+      ],
+      "cwd": "${workspaceRoot}",
+      "stopAtEntry": true,
+      "externalConsole": false
+    }
+  ]
+}
